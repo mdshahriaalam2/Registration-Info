@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Registration Card Database</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <i class="fas fa-graduation-cap"></i>
+                <span>RG Database</span>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="user-profile">
+            <div class="profile-image">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h3 id="userFullname">Loading...</h3>
+                <p id="userEmail">Loading...</p>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li class="active">
+                <a href="#overview">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Overview</span>
+                </a>
+            </li>
+            <li>
+                <a href="#data-management">
+                    <i class="fas fa-database"></i>
+                    <span>Data Management</span>
+                </a>
+            </li>
+            <li>
+                <a href="#scraping">
+                    <i class="fas fa-cloud-download-alt"></i>
+                    <span>Data Scraping</span>
+                </a>
+            </li>
+            <li>
+                <a href="#analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <li>
+                <a href="#settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <button id="logoutBtn" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search students...">
+            </div>
+            <div class="header-actions">
+                <button class="action-btn" id="notificationsBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="action-btn" id="helpBtn">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <h2>Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Students</h3>
+                            <p id="totalStudents">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Colleges</h3>
+                            <p id="totalColleges">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Sessions</h3>
+                            <p id="activeSessions">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Last Update</h3>
+                            <p id="lastUpdate">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-card" onclick="location.href='#scraping'">
+                            <i class="fas fa-cloud-download-alt"></i>
+                            <span>Start Scraping</span>
+                        </button>
+                        <button class="action-card" onclick="location.href='#data-management'">
+                            <i class="fas fa-file-export"></i>
+                            <span>Export Data</span>
+                        </button>
+                        <button class="action-card" onclick="location.href='#analytics'">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>View Analytics</span>
+                        </button>
+                        <button class="action-card" onclick="location.href='#settings'">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activity items will be added dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Management Section -->
+            <section id="data-management" class="dashboard-section">
+                <h2>Data Management</h2>
+                <div class="data-controls">
+                    <div class="search-filters">
+                        <select id="collegeFilter">
+                            <option value="">All Colleges</option>
+                        </select>
+                        <select id="sessionFilter">
+                            <option value="">All Sessions</option>
+                        </select>
+                        <button class="filter-btn" id="applyFilters">
+                            <i class="fas fa-filter"></i>
+                            Apply Filters
+                        </button>
+                    </div>
+                    <div class="data-actions">
+                        <button class="action-btn" id="exportData">
+                            <i class="fas fa-file-export"></i>
+                            Export Data
+                        </button>
+                        <button class="action-btn" id="importData">
+                            <i class="fas fa-file-import"></i>
+                            Import Data
+                        </button>
+                        <button class="action-btn" id="clearData">
+                            <i class="fas fa-trash"></i>
+                            Clear Data
+                        </button>
+                    </div>
+                </div>
+
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Registration No</th>
+                                <th>Name</th>
+                                <th>College</th>
+                                <th>Session</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTableBody">
+                            <!-- Table data will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="pagination-btn" id="prevPage">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span id="pageInfo">Page 1 of 1</span>
+                    <button class="pagination-btn" id="nextPage">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Scraping Section -->
+            <section id="scraping" class="dashboard-section">
+                <h2>Data Scraping</h2>
+                <div class="scrape-container">
+                    <form id="scrapeForm" class="scrape-form">
+                        <div class="form-group">
+                            <label for="startReg">Start Registration Number</label>
+                            <input type="text" id="startReg" name="startReg" required
+                                   pattern="\d{11}" placeholder="Enter 11-digit registration number">
+                            <span class="validation-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endReg">End Registration Number</label>
+                            <input type="text" id="endReg" name="endReg" required
+                                   pattern="\d{11}" placeholder="Enter 11-digit registration number">
+                            <span class="validation-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="outputFile">Output Filename</label>
+                            <div class="file-input-group">
+                                <input type="text" id="outputFile" name="outputFile" required
+                                       pattern="[A-Za-z0-9\s\-_]+" placeholder="Enter filename">
+                                <span class="file-extension">.json</span>
+                            </div>
+                            <span class="validation-message"></span>
+                        </div>
+
+                        <div class="scrape-options">
+                            <div class="option-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="filterEconomics" name="filterEconomics">
+                                    <span class="checkmark"></span>
+                                    Filter Economics Students Only
+                                </label>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="delayRange">Request Delay</label>
+                                <div class="delay-slider">
+                                    <input type="range" id="delayRange" name="delayRange"
+                                           min="100" max="2000" step="100" value="500">
+                                    <span id="delayValue">500ms</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="auth-button" id="startScrape">
+                                <i class="fas fa-play"></i>
+                                Start Scraping
+                            </button>
+                            <button type="button" class="auth-button secondary" id="stopScrape" disabled>
+                                <i class="fas fa-stop"></i>
+                                Stop
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="progress-container" style="display: none;">
+                        <div class="progress-header">
+                            <span class="progress-status">Initializing...</span>
+                            <span class="progress-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <div class="stat">
+                                <i class="fas fa-clock"></i>
+                                Time: <span id="timeElapsed">00:00:00</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-check-circle"></i>
+                                Success: <span id="successCount">0</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-times-circle"></i>
+                                Failed: <span id="failCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scrape-log">
+                        <div class="log-header">
+                            <h3>Scraping Log</h3>
+                            <button class="clear-log" id="clearLog">
+                                <i class="fas fa-trash"></i>
+                                Clear Log
+                            </button>
+                        </div>
+                        <div class="log-content" id="logContent">
+                            <!-- Log entries will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="dashboard-section">
+                <h2>Analytics</h2>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>College Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="collegeChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Session Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="sessionChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Yearly Growth</h3>
+                        <div class="chart-container">
+                            <canvas id="growthChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Data Quality</h3>
+                        <div class="chart-container">
+                            <canvas id="qualityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="dashboard-section">
+                <h2>Settings</h2>
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Profile Settings</h3>
+                        <form id="profileForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="profileFirstName">First Name</label>
+                                <input type="text" id="profileFirstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileEmail">Email</label>
+                                <input type="email" id="profileEmail" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileMobile">Mobile</label>
+                                <input type="tel" id="profileMobile" name="mobile" required>
+                            </div>
+                            <button type="submit" class="auth-button">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Change Password</h3>
+                        <form id="passwordForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="currentPassword" name="currentPassword" required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="newPassword" name="newPassword" required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="submit" class="auth-button">
+                                <i class="fas fa-key"></i>
+                                Update Password
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Notification Settings</h3>
+                        <form id="notificationForm" class="settings-form">
+                            <div class="option-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="emailNotifications" name="emailNotifications">
+                                    <span class="checkmark"></span>
+                                    Email Notifications
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="scrapeNotifications" name="scrapeNotifications">
+                                    <span class="checkmark"></span>
+                                    Scraping Notifications
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="updateNotifications" name="updateNotifications">
+                                    <span class="checkmark"></span>
+                                    Update Notifications
+                                </label>
+                            </div>
+                            <button type="submit" class="auth-button">
+                                <i class="fas fa-bell"></i>
+                                Save Preferences
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Data Management</h3>
+                        <div class="settings-actions">
+                            <button class="action-btn" id="backupData">
+                                <i class="fas fa-download"></i>
+                                Backup Data
+                            </button>
+                            <button class="action-btn" id="restoreData">
+                                <i class="fas fa-upload"></i>
+                                Restore Data
+                            </button>
+                            <button class="action-btn danger" id="clearAllData">
+                                <i class="fas fa-trash"></i>
+                                Clear All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+                <button class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="auth-button secondary" id="cancelAction">Cancel</button>
+                <button class="auth-button" id="confirmAction">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Help & Support</h3>
+                <button class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="help-section">
+                    <h4>Getting Started</h4>
+                    <p>Learn how to use the dashboard effectively:</p>
+                    <ul>
+                        <li>Use the sidebar to navigate between different sections</li>
+                        <li>Start scraping data from the Scraping section</li>
+                        <li>Manage and export your data from the Data Management section</li>
+                        <li>View analytics and statistics in the Analytics section</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h4>Need Help?</h4>
+                    <p>Contact support for assistance:</p>
+                    <ul>
+                        <li>Email: support@rgdatabase.com</li>
+                        <li>Phone: +880 1234-567890</li>
+                        <li>Hours: 9:00 AM - 5:00 PM (GMT+6)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 

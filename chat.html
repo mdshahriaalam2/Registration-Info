@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Support - Registration Info</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-database"></i>
+            <span>Registration Info</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#services" class="nav-link">Services</a>
+            <a href="index.html#about" class="nav-link">About</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-primary">Login</a>
+                <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+            </div>
+        </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- User Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>User Profile</h3>
+                <button class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-details">
+                        <div class="info-group">
+                            <label>Full Name</label>
+                            <p id="profileFullName">-</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Email</label>
+                            <p id="profileEmail">-</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Education Level</label>
+                            <p id="profileEducation">-</p>
+                        </div>
+                        <div class="info-group">
+                            <label>College</label>
+                            <p id="profileCollege">-</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Mobile</label>
+                            <p id="profileMobile">-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-secondary" id="editProfileBtn">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                    <button class="btn btn-danger" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <!-- Chat Sidebar -->
+        <div class="chat-sidebar">
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                    <h4 id="userName">Loading...</h4>
+                    <p id="userEmail">Loading...</p>
+                </div>
+                <button class="profile-btn" id="openProfileBtn">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-header">
+                <h3>Support Team</h3>
+                <div class="online-status">
+                    <span class="status-dot"></span>
+                    Online
+                </div>
+            </div>
+
+            <div class="support-agents">
+                <div class="agent active">
+                    <div class="agent-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="agent-info">
+                        <h4>John Doe</h4>
+                        <p>Technical Support</p>
+                    </div>
+                </div>
+                <div class="agent">
+                    <div class="agent-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="agent-info">
+                        <h4>Jane Smith</h4>
+                        <p>Academic Support</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <h4>Quick Links</h4>
+                <a href="index.html#services" class="quick-link">
+                    <i class="fas fa-info-circle"></i>
+                    Services
+                </a>
+                <a href="feedback.html" class="quick-link">
+                    <i class="fas fa-comment-alt"></i>
+                    Feedback
+                </a>
+                <a href="privacy.html" class="quick-link">
+                    <i class="fas fa-shield-alt"></i>
+                    Privacy Policy
+                </a>
+            </div>
+        </div>
+
+        <!-- Chat Main -->
+        <div class="chat-main">
+            <div class="chat-header">
+                <div class="current-agent">
+                    <div class="agent-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="agent-info">
+                        <h4>John Doe</h4>
+                        <p>Technical Support</p>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <div class="ai-chat-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="aiChatToggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="toggle-label">AI Chat</span>
+                    </div>
+                    <button class="action-btn" title="Clear Chat">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-btn" title="Download Chat">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="message system">
+                    <div class="message-content">
+                        <p>Welcome to Registration Info Support! How can we help you today?</p>
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+
+                <!-- Support Agent Message -->
+                <div class="message agent">
+                    <div class="agent-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hello! I'm John from the support team. I'm here to assist you with any questions about our registration system, data management, or general inquiries. What would you like to know?</p>
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="chat-input">
+                <div class="input-actions">
+                    <button class="action-btn" title="Attach File">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button class="action-btn" title="Emoji">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                </div>
+                <div class="message-input">
+                    <textarea placeholder="Type your message..." id="messageInput"></textarea>
+                </div>
+                <button class="send-btn" id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Upload Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Attach File</h3>
+                <button class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag and drop files here or click to browse</p>
+                    <input type="file" id="fileInput" hidden>
+                    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">
+                        Choose File
+                    </button>
+                </div>
+                <div class="upload-preview" id="uploadPreview"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="uploadBtn">Upload</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/chat.js"></script>
+</body>
+</html> 

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Registration Info</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/feedback.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-database"></i>
+            <span>Registration Info</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#services" class="nav-link">Services</a>
+            <a href="index.html#about" class="nav-link">About</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-primary">Login</a>
+                <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+            </div>
+        </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Feedback Container -->
+    <div class="feedback-container">
+        <div class="feedback-header">
+            <h1>Share Your Feedback</h1>
+            <p>Help us improve our services by sharing your thoughts and suggestions</p>
+        </div>
+
+        <div class="feedback-content">
+            <!-- Feedback Form -->
+            <form class="feedback-form" id="feedbackForm">
+                <div class="form-section">
+                    <h3>Your Experience</h3>
+                    <div class="rating-group">
+                        <label>Overall Experience</label>
+                        <div class="star-rating">
+                            <input type="radio" name="rating" value="5" id="rating5">
+                            <label for="rating5"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" value="4" id="rating4">
+                            <label for="rating4"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" value="3" id="rating3">
+                            <label for="rating3"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" value="2" id="rating2">
+                            <label for="rating2"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" value="1" id="rating1">
+                            <label for="rating1"><i class="fas fa-star"></i></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedbackType">Feedback Type</label>
+                        <select id="feedbackType" name="feedbackType" required>
+                            <option value="">Select feedback type</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="compliment">Compliment</option>
+                            <option value="complaint">Complaint</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedbackTitle">Title</label>
+                        <input type="text" id="feedbackTitle" name="feedbackTitle" placeholder="Brief summary of your feedback" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedbackDescription">Description</label>
+                        <textarea id="feedbackDescription" name="feedbackDescription" rows="5" placeholder="Please provide detailed feedback..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Additional Information</h3>
+                    <div class="form-group">
+                        <label for="userType">I am a</label>
+                        <select id="userType" name="userType" required>
+                            <option value="">Select user type</option>
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="admin">Administrator</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userEmail">Email (optional)</label>
+                        <input type="email" id="userEmail" name="userEmail" placeholder="Your email address">
+                        <small>We'll only use this to follow up on your feedback</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="anonymous" id="anonymous">
+                            <span class="checkmark"></span>
+                            Submit anonymously
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Feedback
+                    </button>
+                </div>
+            </form>
+
+            <!-- Feedback Guidelines -->
+            <div class="feedback-guidelines">
+                <h3>Feedback Guidelines</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span>Be specific and provide examples when possible</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span>Focus on constructive criticism and suggestions</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span>Include relevant details about your experience</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span>Be respectful and professional in your feedback</span>
+                    </li>
+                </ul>
+
+                <div class="guidelines-note">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Your feedback helps us improve our services and provide better support to our users.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thank You!</h3>
+                <button class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Your feedback has been submitted successfully. We appreciate your input!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/feedback.js"></script>
+</body>
+</html> 
